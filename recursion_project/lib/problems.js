@@ -176,40 +176,16 @@ function flatten(data) {
 // fileFinder(desktop, 'sequoia.jpeg');             // => false
 function fileFinder(directories, targetFile) {
     // dfs
-    let queue = Object.keys(directories) // ['/images', '/music']
-    // console.log(queue)
-
-    for (let i = 0; i < queue.length; i++) {
-        const el = queue[i];
-        if (targetFile === el) {
-            console.log(el)
-            return true
-        } else if (el.children !== null) {
-            
-            for (j = 0; j < el.children.length; j++) {
-                result = fileFinder(el.children[i], targetFile);
-            }
+    for (let key in directories) {
+        if (key === targetFile || fileFinder(directories[key], targetFile)) {
+            return true;
         }
-        
     }
 
     return false;
 
 }
 
-function searchTree(element, matchingTitle) {
-    if (element.title == matchingTitle) {
-        return element;
-    } else if (element.children != null) {
-        var i;
-        var result = null;
-        for (i = 0; result == null && i < element.children.length; i++) {
-            result = searchTree(element.children[i], matchingTitle);
-        }
-        return result;
-    }
-    return null;
-}
 
 
 // Write another function, pathFinder(directories, targetFile), that returns the path that contains the targetFile.
