@@ -120,7 +120,19 @@ function pow(base, exponent) {
 //     2-dimensional array: [['some data']]
 //     3-dimensional array: [[['some data']]]
 function flatten(data) {
-    
+    let dupped = [];
+
+    for (let i = 0; i < data.length; i++) {
+        const el = data[i];
+        
+        if (Array.isArray(el)) {
+            dupped = dupped.concat(flatten(el))
+        } else {
+            dupped.push(el)
+        }
+    }
+
+    return dupped
 }
 
 // Write a function, fileFinder(directories, targetFile), that accepts an object representing directories and a string respresenting a filename.
@@ -163,6 +175,7 @@ function flatten(data) {
 // fileFinder(desktop, 'everlong.flac');            // => true
 // fileFinder(desktop, 'sequoia.jpeg');             // => false
 function fileFinder(directories, targetFile) {
+    
 
 }
 
