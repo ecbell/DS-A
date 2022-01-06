@@ -4,7 +4,7 @@
 
 function change(amount, coins, memo={}) {
   let key = amount + '-' + coins;
-  if (key in memo) return memo[key];
+  if (key in memo) return memo[key]
   
   if (amount === 0) return 1;
 
