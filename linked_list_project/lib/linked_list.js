@@ -96,6 +96,21 @@ class LinkedList {
 
     // TODO: Implement the removeHead method here
     removeHead() {
+        if (!this.head) return undefined;
+        let removedHead = this.head;
+
+        if(this.head) {
+            this.head = this.head.next;
+            this.length--;
+        }
+
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+
+
+        return removedHead;
 
     }
 
