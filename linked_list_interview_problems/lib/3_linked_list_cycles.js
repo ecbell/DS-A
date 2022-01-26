@@ -28,7 +28,7 @@
 //                           A → B → C → D → E → null
 // 
 // A "cycle" occurs when there exists a node in the list whose next pointer
-// points to a node that appeard previously in the list. Traversing a cyclical
+// points to a node that appeared previously in the list. Traversing a cyclical
 // list results in an infinite loop, where one visits the same nodes (those
 // LinkedIn to the cycle...see what I did there? :P) again and again.
 //
@@ -61,8 +61,18 @@
 // -----------
 function hasCycle(linkedList) {
   // TODO: Implement the hasCycle function!
+  let slow = linkedList.head;
+  let fast = linkedList.head;
+  let pause = true;
 
-}
+  while (fast = fast.next) {
+    if (fast === slow) return true;
+    pause ? slow : slow.next;
+    pause = !pause;
+  }
+
+  return false;
+};
 
 
 // ----------------------------------------
