@@ -1,8 +1,13 @@
 function inOrderArray(root) {
+    if (root === null) return [];
 
+    return [...inOrderArray(root.left), root.val, ...inOrderArray(root.right)];
 }
 
 function postOrderArray(root) {
+    if (root === null) return [];
+
+    return [...postOrderArray(root.left), ...postOrderArray(root.right), root.val];
 
 }
 
