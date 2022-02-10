@@ -5,7 +5,7 @@ const { TreeNode } = require("../../tree_order_project/lib/tree_node");
 
 
 function sortedArrayToBST(nums) {
-  if(nums.length === 0) return null;
+  if (nums.length === 0) return null;
 
   let midIdx = Math.floor(nums.length / 2);
   let root = new TreeNode(nums[midIdx]);
