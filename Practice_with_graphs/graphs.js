@@ -72,3 +72,46 @@ class TreeNode {
   }
 }
 
+// in order
+function inOrderPrint(root) {
+  console.log(root.val);
+  inOrderPrint(root.left);
+  inOrderPrint(root.right);
+}
+
+
+//post order
+//- print all nodes in the left subtree
+//- print all nodes in the right subtree
+//  - print root
+function postOrderPrint(root) {
+  if (!root) return;
+
+  postOrderPrint(root.left);
+  postOrderPrint(root.right);
+  console.log(root.val);
+}
+
+
+// pre order
+function preOrderPrint(root) {
+  if (!root) return;
+
+  console.log(root.val);
+  preOrderPrint(root.left);
+  preOrderPrint(root.right);
+}
+
+
+function depthFirst(root) {
+  let stack = [root];
+
+  while (stack.length) {
+    let node = stack.pop;
+
+    console.log(node.val);
+
+    if (node.right) stack.push(node.right);
+    if (node.left) stack.push(node.left);
+  }
+}
