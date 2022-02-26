@@ -118,3 +118,42 @@ function dfs(letters, path, used, res) { //[1]
     used[i] = false; //[false,false,false]
   }
 }
+
+
+//max depth of binary tree
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function (root) {
+
+  if (!root) return 0;
+  let count = 0;
+  let queue = [root];
+
+  while (queue.length) {
+    count++;
+    // let node = queue.shift();
+
+    let len = queue.length;
+
+    for (let i = 0; i < len; i++) {
+      if (queue[i].left) queue.push(queue[i].left);
+      if (queue[i].right) queue.push(queue[i].right);
+    }
+
+    queue = queue.slice(len);
+  }
+
+  return count;
+
+};
