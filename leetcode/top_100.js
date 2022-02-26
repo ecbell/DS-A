@@ -83,3 +83,38 @@ var coinChange = function (coins, amount) {
 
   return countCoins[amount] === Infinity ? -1 : countCoins[amount];
 };
+
+//permutations
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+var permute = function (letters) {
+  let res = []; // results
+  let usedArr = Array(letters.length).fill(false);
+  dfs(letters, [], usedArr, res); // outside DFS function to get permutations
+  return res; // return result
+}
+
+function dfs(letters, path, used, res) { //[1]
+  if (path.length == letters.length) { // 3  eq to 3
+    // make a deep copy since otherwise we'd be append the same list over and over
+    res.push(Array.from(path));
+    return;
+  }
+
+  for (let i = 0; i < letters.length; i++) { // i = 1;
+    // skip used letters
+    if (used[i]) continue; // if letter is true in used arr, don't add
+
+    // add letter to permutation, mark letter as used
+    path.push(letters[i]); // otherwise, add letter to path. [1], [2]
+    used[i] = true; // [false, true, false]
+    dfs(letters, path, used, res); // [1,2,3]
+
+    // remove letter from permutation, mark letter as unused
+    path.pop(); // []
+    used[i] = false; //[false,false,false]
+  }
+}
