@@ -66,3 +66,20 @@ var isValidSudoku = function (board) {
 };
 
 
+// count min coin combo
+var coinChange = function (coins, amount) {
+
+  let countCoins = new Array(amount + 1).fill(Infinity);
+  // [0, 1, 1, 2, 2, 1, 2, 3, 3, 3, 2, 3 ]
+  countCoins[0] = 0;
+
+  for (let i = 1; i <= amount; i++) { // i = 8
+    for (const coin of coins) { // coin = 2
+      if (i - coin >= 0) {
+        countCoins[i] = Math.min(countCoins[i], countCoins[i - coin] + 1);
+      }
+    }
+  }
+
+  return countCoins[amount] === Infinity ? -1 : countCoins[amount];
+};
