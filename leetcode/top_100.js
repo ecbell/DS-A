@@ -211,7 +211,7 @@ const countAndSay = n => {
     let newStr = '',
       count = 0,
       say = str[0];
-    for (let i = 0; i < str.length; i += 1) {
+    for (let i = 0; i < str.length; i++) {
       if (str[i] === say) {
         count += 1;
       } else {
@@ -234,7 +234,7 @@ const countAndSay = (n, str = '1') => {
   let newStr = '',
     count = 0,
     say = str[0];
-  for (let i = 0; i < str.length; i += 1) {
+  for (let i = 0; i < str.length; i++) {
     if (str[i] === say) {
       count += 1;
     } else {
