@@ -157,3 +157,28 @@ var maxDepth = function (root) {
   return count;
 
 };
+
+//// combination sum
+function combinationSum(candidates, target) {
+  let index = 0;
+  let candidateSubArr = [];
+  let result = [];
+
+
+  function recursion(index, target, candidateSubArr) {
+    if (target === 0) {
+      result.push([...candidateSubArr]);
+    }
+
+    if (target < 0) return;
+
+    for (let i = index; i < candidates.length; i++) {
+      const candidate = candidates[i];
+      recursion(i, target - candidate, candidateSubArr);
+      candidateSubArr.pop();
+    }
+  }
+
+  recursion(index, target, candidateSubArr);
+  return result;
+}
