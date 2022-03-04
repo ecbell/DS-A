@@ -182,3 +182,25 @@ function combinationSum(candidates, target) {
   recursion(index, target, candidateSubArr);
   return result;
 }
+
+
+
+//coin combos
+var change = function (amount, coins) {
+
+  let combos = new Array(amount + 1).fill(0);
+  combos[0] = 1
+
+  for (const coin of coins) {
+    for (let j = 1; j <= amount; j++) {
+      if (j >= coin) {
+        combos[j] = combos[j] + combos[j - coin];
+      }
+    }
+  }
+
+
+  return combos[amount];
+};
+
+
