@@ -269,5 +269,41 @@ var strStr = function (haystack, needle) {
 
 
 //// letter combinations of a phone number
+// Since each digit can possibly mean one of several characters, we'll need to create code that branches down the different paths as we iterate through the input digit string (D).
+// This quite obviously calls for a depth-first search (DFS) approach as we will check each permutation of characters and store them in our answer array (ans). For a DFS approach we can use one of several options, but a recursive solution is generally the cleanest.
+// But first, we'll need to set up a lookup table (L) to convert a digit to its possible characters. Since the digits are actually low-indexed integers, we can actually choose between an array or map/dictionary here with little difference.
+// For our DFS function (dfs), we'll have to feed it the current position (pos) in D as well as the string (str) being built. The function will also need to have access to D, L, and ans.
+// The DFS function itself is fairly simple. It will push a completed str onto ans, otherwise it will look up the characters that match the current pos, and then fire off new recursive functions down each of those paths.
+// Once we're done, we should be ready to return ans.
+// Time complexity here is O(4^N * N) where N is the length of the input string. There's really no way around a brute force response here, as there will be up to 4^N results in the answer array and each one is a string N characters long. The recursive helper function itself will be called up to 4^N * N / (N - 1) times.
 
+var letterCombinations = function (digits) {
+  const map = {
+    '2': "abc", '3': "def", '4': "ghi", '5': "jkl",
+    '6': "mno", '7': "pqrs", '8': "tuv", '9': "wxyz"
+  }
 
+  let len = digits.length;
+  let ans = [];
+
+  if (!len) return []
+
+  const dfs = (pos, str) => {
+    if (pos === len) {
+      ans.push(str)
+    } else {
+      let num = digits[pos];
+      let letters = map[num];
+
+      for (let i = 0; i < letters.length; i++)
+        dfs(pos + 1, str + letters[i])
+    }
+  }
+
+  dfs(0, "")
+  return ans
+}
+
+/// word pattern
+
+// https://leetcode.com/discuss/interview-experience/335629/dropbox-sr-software-engineer-san-francisco-reject
