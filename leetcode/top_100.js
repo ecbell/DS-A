@@ -245,3 +245,29 @@ const countAndSay = (n, str = '1') => {
   }
   return countAndSay(n - 1, newStr + count + say);
 };
+
+
+///needle in haystack strstr
+
+var strStr = function (haystack, needle) {
+  let needleLength = needle.length;
+  let startIdx = 0
+  let endIdx = needleLength;
+
+  while (endIdx <= haystack.length) {
+
+    if (needle === haystack.slice(startIdx, endIdx)) {
+      return startIdx
+    }
+
+    startIdx++;
+    endIdx++;
+  }
+
+  return -1;
+};
+
+
+//// letter combinations of a phone number
+
+
