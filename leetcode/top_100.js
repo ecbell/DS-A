@@ -305,5 +305,65 @@ var letterCombinations = function (digits) {
 }
 
 /// word pattern
+var wordPattern = function (pattern, s) {
+  let keys = {};
+  let str = s.split(' ');
+  let values = new Set();
+
+  if (str.length !== pattern.length) return false;
+
+  for (let i = 0; i < pattern.length; i++) {
+    const letter = pattern[i];
+
+    if (!keys[letter] && !values.has(str[i])) {
+      keys[letter] = str[i];
+      values.add(str[i]);
+    } else if (keys[letter] !== str[i]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+
+
+
 
 // https://leetcode.com/discuss/interview-experience/335629/dropbox-sr-software-engineer-san-francisco-reject
+
+//// game of life
+var gameOfLife = function (board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[0].length; j++) {
+      let cell = board[i][j];
+      let neighbors = getNeighbors(i, j, board);
+      if (cell == 0 && neighbors == 3) {
+        board[i][j] = 2
+      }
+      if (cell == 1 && (neighbors < 2 || neighbors > 3)) {
+        board[i][j] = -1;
+      }
+    }
+  }
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[0].length; j++) {
+      if (board[i][j] == -1) board[i][j] = 0;
+      if (board[i][j] == 2) board[i][j] = 1;
+    }
+  }
+};
+
+
+var getNeighbors = function (r, c, board) {
+  let radius = [-1, 0, +1], count = 0;
+  for (let i = 0; i < radius.length; i++) {
+    for (let j = 0; j < radius.length; j++) {
+      if (!(radius[i] == 0 && radius[j] == 0) && board[r + radius[i]] != null) {
+        let neighbor = board[r + radius[i]][c + radius[j]];
+        if (Math.abs(neighbor) == 1) count += 1;
+      }
+    }
+  }
+  return count;
+}
